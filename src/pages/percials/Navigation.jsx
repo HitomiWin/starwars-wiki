@@ -19,8 +19,7 @@ const Navigation = () => {
           <NavLink to="/people" className="nav-link">
             People
           </NavLink>
-
-          <NavLink to="/planet" className="nav-link">
+          <NavLink to="/planets" className="nav-link">
             Planets
           </NavLink>
         </Nav>
