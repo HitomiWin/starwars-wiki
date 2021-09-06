@@ -6,19 +6,19 @@ import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import ThemeContextProvider from './pages/contexts/ThemeContext';
+import ThemeContextProvider from './contexts/ThemeContext';
 
 const queryClient = new QueryClient()
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeContextProvider>
       <BrowserRouter>
+      <ThemeContextProvider>
        <App />
        <ReactQueryDevtools initialIsOpen={false} />
-      </BrowserRouter>
       </ThemeContextProvider>
+      </BrowserRouter>
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")

@@ -5,9 +5,11 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getFetchedData } from "../services/SWAPI";
 import { getIdFromUrl } from "../helpers/getId";
+import { useThemeContext } from "../contexts/ThemeContext";
 
 const Person = () => {
   let { id } = useParams();
+  const {theme} =useThemeContext()
   // eslint-disable-next-line
   const { data, error, isError, isFetching, isLoading, isPreviosData } =
     useQuery(["people", id], () => getFetchedData("people", id));
@@ -27,7 +29,7 @@ const Person = () => {
         <Card>
           <Card.Header as="h5">{data.results.name}</Card.Header>
           <Card.Body>
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant={theme}>
               <tbody>
                 <tr>
                   <td>Eye color</td>

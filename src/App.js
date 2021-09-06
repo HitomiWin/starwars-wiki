@@ -6,11 +6,13 @@ import Planets from "./pages/Planets";
 import Planet from "./pages/Planet";
 import Person from "./pages/Person"
 import Film from "./pages/Film"
+import ThemeSwitcher from "./components/ThemeSwitcher";
 
 function App() {
   return (
     <>
       <Navigation />
+      <ThemeSwitcher />
       <div className="App">
         <Switch>
           <Route exact path="/">

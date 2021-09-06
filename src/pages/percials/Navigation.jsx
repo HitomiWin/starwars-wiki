@@ -3,10 +3,12 @@ import { Link, NavLink } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { useThemeContext } from "../../contexts/ThemeContext";
 
 const Navigation = () => {
+  const {theme} =useThemeContext()
   return (
-    <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+    <Navbar collapseOnSelect expand="md" bg='dark' variant='dark'>
       <Container>
         <Link to="/" className="navbar-brand">
           Star Wars Wiki

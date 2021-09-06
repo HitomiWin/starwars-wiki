@@ -3,16 +3,18 @@ import { Link } from "react-router-dom";
 import { Table, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import {  getFetchedData } from "../services/SWAPI";
+import { getFetchedData } from "../services/SWAPI";
 import { getIdFromUrl } from "../helpers/getId";
+import { useThemeContext } from "../contexts/ThemeContext";
 
 const Planet = () => {
   let { id } = useParams();
+  const {theme} = useThemeContext();
   // eslint-disable-next-line
   const { data, error, isError, isFetching, isLoading, isPreviosData } =
     useQuery(["planets", id], () => getFetchedData("planets", id));
 
-if(data) console.log(data)
+  if (data) console.log(data);
   return (
     <div>
       {isLoading && <p className="my-3">Loading planet...</p>}
@@ -25,9 +27,9 @@ if(data) console.log(data)
 
       {data && (
         <Card>
-          <Card.Header as="h5">{data.results.name}</Card.Header>
+          <Card.Header as="h5" variant={theme}>{data.results.name}</Card.Header>
           <Card.Body>
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant={theme}>
               <tbody>
                 <tr>
                   <td>Rotation Period</td>
@@ -60,13 +62,11 @@ if(data) console.log(data)
                       const id = getIdFromUrl(url);
                       return (
                         <li key={id}>
-                          <Link to={`/people/${id}`}>
-                            People {id} &raquo;
-                          </Link>
+                          <Link to={`/people/${id}`}>People {id} &raquo;</Link>
                         </li>
                       );
                     })}
-                  </td>                 
+                  </td>
                 </tr>
                 <tr>
                   <td>Filmes</td>
@@ -75,9 +75,7 @@ if(data) console.log(data)
                       const id = getIdFromUrl(url);
                       return (
                         <li key={id}>
-                          <Link to={`/films/${id}`}>
-                            Film {id} &raquo;
-                          </Link>
+                          <Link to={`/films/${id}`}>Film {id} &raquo;</Link>
                         </li>
                       );
                     })}

@@ -5,14 +5,16 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getFetchedData } from "../services/SWAPI";
 import { getIdFromUrl } from "../helpers/getId";
+import { useThemeContext } from "../contexts/ThemeContext";
 
 const Film = () => {
   let { id } = useParams();
+  const {theme}=useThemeContext()
   // eslint-disable-next-line
   const { data, error, isError, isFetching, isLoading, isPreviosData } =
     useQuery(["films", id], () => getFetchedData("films", id));
 
-if(data) console.log(data)
+  if (data) console.log(data);
   return (
     <div>
       {isLoading && <p className="my-3">Loading film...</p>}
@@ -27,7 +29,7 @@ if(data) console.log(data)
         <Card>
           <Card.Header as="h5">{data.results.title}</Card.Header>
           <Card.Body>
-            <Table striped bordered hover variant="dark">
+            <Table striped bordered hover variant={theme}>
               <tbody>
                 <tr>
                   <td>Director</td>
@@ -45,7 +47,7 @@ if(data) console.log(data)
                   <td>Release Date</td>
                   <td>{data.results.release_date}</td>
                 </tr>
-              
+
                 <tr>
                   <td>Characters</td>
                   <td>
@@ -68,9 +70,7 @@ if(data) console.log(data)
                       const id = getIdFromUrl(url);
                       return (
                         <li key={id}>
-                          <Link to={`/planet/${id}`}>
-                            Planet {id} &raquo;
-                          </Link>
+                          <Link to={`/planet/${id}`}>Planet {id} &raquo;</Link>
                         </li>
                       );
                     })}

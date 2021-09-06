@@ -15,7 +15,7 @@ const People = () => {
     });
 
   return (
-    <Container>
+    <Container  >
       <h1>People</h1>
       <div className="text-center my-5">
         {isLoading && <p className="my-3">Loading people...</p>}
