@@ -1,7 +1,13 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 import {Card, Button, Col} from 'react-bootstrap'
+import { getIdFromUrl } from "../helpers/getId";
 
 function PeopleCard({people}) {
+  const history=useHistory()
+  const id = getIdFromUrl(people.url)
+
+
   return (
     <Col md="4" className="my-3">
     <Card>
@@ -17,7 +23,7 @@ function PeopleCard({people}) {
        Eye Color: {people.eye_color}
       </Card.Text>
      
-      <Button variant="primary">Go somewhere</Button>
+      <Button variant="primary" onClick={()=>history.push(`people/${id}`)}>Read More..</Button>
     </Card.Body>
   </Card>
     </Col>
